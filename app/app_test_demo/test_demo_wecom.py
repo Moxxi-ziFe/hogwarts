@@ -35,4 +35,4 @@ class TestDW:
         # sleep(2)
         # print(self.driver.page_source)
         # assert '外出打卡成功' in self.driver.page_source
-        WebDriverWait(self.driver, 10).until(lambda x: '外出打卡成功' in x.driver.page_source)
+        WebDriverWait(self.driver, 10).until(lambda x: '外出打卡成功' in x.page_source)
