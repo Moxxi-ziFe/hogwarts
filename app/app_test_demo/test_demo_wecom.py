@@ -49,13 +49,17 @@ class TestDW:
         name = 'hogwarts__001'
         gender = '男'
         phone_number = '12345678901'
+        # 进入通讯录
         self.driver.find_element(MobileBy.XPATH, "//*[@text='通讯录']").click()
         # self.driver.find_element(MobileBy.XPATH, "//*[@text='添加成员']").click()
+        # 滚动查找‘添加成员’
         self.driver.find_element_by_android_uiautomator('new UiScrollable(new UiSelector().'
                                                         'scrollable(true).instance(0)).'
                                                         'scrollIntoView(new UiSelector().text("添加成员").'
                                                         'instance(0));').click()
+        # 点击‘手动输入添加’
         self.driver.find_element(MobileBy.XPATH, "//*[@text='手动输入添加']").click()
+        # 输入信息并保存
         self.driver.find_element(MobileBy.XPATH, "//*[@text='姓名　']/../android.widget.EditText").send_keys(name)
         self.driver.find_element(MobileBy.XPATH, "//*[@text='性别']/..//*[@text='男']").click()
         if gender == '男':
@@ -72,5 +76,6 @@ class TestDW:
         self.driver.find_element(MobileBy.XPATH, "//*[@text='保存']").click()
         # sleep(2)
         # print(self.driver.page_source)
+        # 验证toast
         res = self.driver.find_element(MobileBy.XPATH, "//*[@class='android.widget.Toast']").text
         assert '添加成功' == res
