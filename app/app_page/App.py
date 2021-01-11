@@ -2,27 +2,35 @@
 App.py 模块， 存放app相关操作
 eg. 启动应用， 重启应用， 停止应用， 进入到首页
 """
+import yaml
 from appium import webdriver
 
 from app.app_page.Base_page import BasePage
 from app.app_page.Main_page import MainPage
+
+with open('../config_datas/caps.yml') as datas:
+    my_config = yaml.safe_load(datas)
+    caps = my_config["desirecaps"]
+    ip = my_config["server"]["ip"]
+    port = my_config["server"]["port"]
 
 
 class App(BasePage):
     def start(self):
         #  启动app
         if not self.driver:
-            desire_cap = {
-                "platformName": "android",
-                "deviceName": "127.0.0.1:7555",
-                "appPackage": "com.tencent.wework",
-                "appActivity": ".launch.LaunchSplashActivity",
-                "noReset": "true",
-                "skipDeviceInitialization": "true",
-                "skipServerInitialization": "true"
-            }
-            self.driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", desire_cap)
-            self.driver.implicitly_wait(20)
+            # desire_cap = {
+            #     "platformName": "android",
+            #     "deviceName": "127.0.0.1:7555",
+            #     "appPackage": "com.tencent.wework",
+            #     "appActivity": ".launch.LaunchSplashActivity",
+            #     "noReset": "true",
+            #     "skipDeviceInitialization": "true",
+            #     "skipServerInitialization": "true"
+            # }
+            self.driver = webdriver.Remote(f"http://{ip}:{port}/wd/hub", caps)
+            self.driver.implicitly_wait(10)
+
         else:
             self.driver.launch_app()
         return self

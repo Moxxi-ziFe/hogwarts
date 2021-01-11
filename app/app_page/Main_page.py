@@ -20,5 +20,5 @@ class MainPage(BasePage):
         进入通讯录页面
         :return:
         """
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='通讯录']").click()
+        self.find(MobileBy.XPATH, "//*[@text='通讯录']").click()
         return AddressListPage(self.driver)
