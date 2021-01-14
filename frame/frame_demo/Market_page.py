@@ -6,5 +6,6 @@ from frame.frame_demo.Search_page import SearchPage
 
 class MarketPage(BasePage):
     def goto_search(self):
-        self.find(MobileBy.XPATH, "//*[@resource-id='com.xueqiu.android:id/action_search']").click()
+        # self.find(MobileBy.XPATH, "//*[@resource-id='com.xueqiu.android:id/action_search']").click()
+        self.parse_yaml("./market.yml", "goto_search")
         return SearchPage(self.driver)

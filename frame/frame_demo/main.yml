@@ -1,0 +1,8 @@
+goto_market:
+  - by: xpath
+    locator: "//*[@resource-id='com.xueqiu.android:id/post_status']"
+    action: click
+
+  - by: xpath
+    locator: "//*[@text='行情' and @resource-id='com.xueqiu.android:id/tab_name']"
+    action: click
