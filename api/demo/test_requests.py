@@ -26,12 +26,15 @@ class TestDemo:
         }
         r = requests.post('https://httpbin.testing-studio.com/post', data=payload)
         print(r.status_code)
+        print(r.request.body)
         print(r.text)
         print(r.json())
         assert r.status_code == 200
 
     def test_header(self):
         r = requests.get('https://httpbin.testing-studio.com/get', headers={'hello': 'world'})
+        print(r.request.headers)
+        print(r.text)
         print(r.json())
         assert r.json()['headers']['Hello'] == 'world'
 
@@ -42,6 +45,7 @@ class TestDemo:
         }
         r = requests.post('https://httpbin.testing-studio.com/post', json=payload)
         print(r.status_code)
+        print(r.request.body)
         print(r.text)
         print(r.json())
         assert r.status_code == 200
