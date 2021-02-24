@@ -117,3 +117,10 @@ class Tag(BaseApi):
                     if tag['name'] == tag_name:
                         res.append(tag)
         return res
+
+    def clear_test_data(self):
+        r = self.list()
+        test_groups = [group['group_id'] for group in r.json()["tag_group"] if group['group_name'][:4] == 'test']
+        for group_id in test_groups:
+            self.delete_group(group_id=group_id)
+        return test_groups

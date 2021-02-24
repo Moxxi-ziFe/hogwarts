@@ -24,7 +24,8 @@ class TestTag:
         assert tags != []
 
     def test_list(self):
-        self.tag.list()
+        r = self.tag.list()
+        print(json.dumps(r.json(), indent=2))
 
     # 40071, UserTag Name Already Exist
     # 1. 删除对应tag(推荐)
@@ -32,7 +33,9 @@ class TestTag:
     @pytest.mark.parametrize(
         'group_name, tag',
         [
-            ["TMP_1", [{"name": "TAG_1"}, {"name": "TAG_2"}, {"name": "TAG_3"}]]
+            ["test_TMP_1", [{"name": "TAG_1"}, {"name": "TAG_2"}, {"name": "TAG_3"}]],
+            ["test_TMP_2", [{"name": "TAG_1"}, {"name": "TAG_2"}, {"name": "TAG_3"}]],
+            ["test_TMP_3", [{"name": "TAG_1"}, {"name": "TAG_2"}, {"name": "TAG_3"}]]
         ]
     )
     def test_add_tag(self, group_name, tag):
@@ -79,3 +82,6 @@ class TestTag:
     def test_find_tag(self):
         tag = self.tag.find_tag(tag_name='TAG_1')
         print(json.dumps(tag, indent=2))
+
+    def test_clear_test_data(self):
+        self.tag.clear_test_data()
